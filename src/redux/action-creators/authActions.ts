@@ -19,7 +19,8 @@ export const login = createAsyncThunk(
         const mockUser = res.data.filter(
           (user) => user.username === username && user.password === password
         )[0];
-        if (mockUser) {
+          console.log(mockUser);
+          if (mockUser) {
           localStorage.setItem("auth", "true");
           localStorage.setItem("username", mockUser.username);
           dispatch(setIsAuth(true));
@@ -32,5 +33,16 @@ export const login = createAsyncThunk(
     } catch (e) {
       dispatch(setError("An error has occurred during logging"));
     }
+  }
+);
+
+export const logout = createAsyncThunk(
+  "auth/logout",
+   (_, { dispatch }) => {
+       console.log(1);
+       localStorage.removeItem("auth");
+      localStorage.removeItem("username");
+      dispatch(setIsAuth(false));
+      dispatch(setUsers({} as IUser));
   }
 );

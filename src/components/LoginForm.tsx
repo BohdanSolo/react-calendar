@@ -2,14 +2,14 @@ import React, {FC, useState} from "react";
 import { Button, Form, Input, Layout } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { rules } from "../utils/rules";
-import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
-import {login} from "../redux/action-creators/authActions";
+import {useAppSelector} from "../hooks/reduxHooks";
 import {RootState} from "../redux/store";
+import {useActions} from "../hooks/useActions";
 
-const stateAuth = (state: RootState) => state.auth
+const stateAuth = (state: RootState) => state.auth;
 
 const LoginForm: FC = (): JSX.Element => {
-    const dispatch = useAppDispatch()
+    const {login}= useActions()
     const {isLoading, error} = useAppSelector(stateAuth);
 
     const [username, setUsername] = useState<string>("")
@@ -22,13 +22,13 @@ const LoginForm: FC = (): JSX.Element => {
         setPassword(e.currentTarget.value)
     }
 
-    const submit = () => {
-        dispatch(login({username, password}))
+    const submitLogin = () => {
+       login({username, password})
     }
 
     return (
     <Layout>
-      <Form style={{ width: "400px", margin: "0 auto", padding: "20px 20px 0 20px", backgroundColor: "#e8e8e8", borderRadius: "5px" }} onFinish={submit}>
+      <Form style={{ width: "400px", margin: "0 auto", padding: "20px 20px 0 20px", backgroundColor: "#e8e8e8", borderRadius: "5px" }} onFinish={submitLogin}>
           {error && <div style={{color: "red"}}>{error}</div>}
         <Form.Item
           name="username"

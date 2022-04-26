@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, {FC, useEffect} from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
@@ -6,6 +6,8 @@ import Event from "./pages/Event";
 import NavBar from "./components/NavBar";
 import { Layout } from "antd";
 import { useAppSelector } from "./hooks/reduxHooks";
+import {useActions} from "./hooks/useActions";
+import {IUser} from "./models/IUser";
 
 export enum RouteNames {
   LOGIN = "/login",
@@ -13,7 +15,15 @@ export enum RouteNames {
 }
 
 const App: FC = (): JSX.Element => {
-  const {isAuth} = useAppSelector((state) => state.auth);
+  const {isAuth,} = useAppSelector((state) => state.auth);
+  const {setUsers, setIsAuth} = useActions();
+
+  useEffect(() => {
+      if (localStorage.getItem("auth")) {
+          setUsers({username :localStorage.getItem("username" || "")} as IUser)
+          setIsAuth(true)
+      }
+  },[])
   return (
     <Layout>
       <NavBar />

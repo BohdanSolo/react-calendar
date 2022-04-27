@@ -26,6 +26,7 @@ export const authSlice = createSlice({
     },
     setUsers(state, action: PayloadAction<IUser>) {
       state.user = action.payload;
+      state.error = ""
     },
     setError(state, action: PayloadAction<string>) {
       state.error = action.payload;

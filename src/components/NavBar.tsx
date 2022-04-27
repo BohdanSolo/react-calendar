@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, {FC, useId} from "react";
 import { Layout, Menu, Row } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ import {useActions} from "../hooks/useActions";
 const stateAuth = (state: RootState) => state.auth;
 
 const NavBar: FC = (): JSX.Element => {
+  const id = useId()
   const navigate = useNavigate();
   const {logout} = useActions()
   const {user} = useAppSelector(stateAuth)
@@ -28,7 +29,7 @@ const NavBar: FC = (): JSX.Element => {
           <>
             <div style={{ color: "white", paddingRight: "10px" }}>{user.username}</div>
             <Menu theme={"dark"} mode={"horizontal"} selectable={false}>
-              <Menu.Item icon={<MailOutlined />} onClick={handleLogOut}>
+              <Menu.Item icon={<MailOutlined />} onClick={handleLogOut} key={id}>
                 Logout
               </Menu.Item>
             </Menu>
@@ -38,6 +39,7 @@ const NavBar: FC = (): JSX.Element => {
             <Menu.Item
               icon={<MailOutlined />}
               onClick={() => navigate(RouteNames.LOGIN)}
+              key={id}
             >
               Login
             </Menu.Item>

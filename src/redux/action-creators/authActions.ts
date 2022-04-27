@@ -19,8 +19,7 @@ export const login = createAsyncThunk(
         const mockUser = res.data.filter(
           (user) => user.username === username && user.password === password
         )[0];
-          console.log(mockUser);
-          if (mockUser) {
+        if (mockUser) {
           localStorage.setItem("auth", "true");
           localStorage.setItem("username", mockUser.username);
           dispatch(setIsAuth(true));
@@ -36,13 +35,9 @@ export const login = createAsyncThunk(
   }
 );
 
-export const logout = createAsyncThunk(
-  "auth/logout",
-   (_, { dispatch }) => {
-       console.log(1);
-       localStorage.removeItem("auth");
-      localStorage.removeItem("username");
-      dispatch(setIsAuth(false));
-      dispatch(setUsers({} as IUser));
-  }
-);
+export const logout = createAsyncThunk("auth/logout", (_, { dispatch }) => {
+  localStorage.removeItem("auth");
+  localStorage.removeItem("username");
+  dispatch(setIsAuth(false));
+  dispatch(setUsers({} as IUser));
+});

@@ -30,7 +30,7 @@ const App = (): JSX.Element => {
       <Layout.Content>
         <Routes>
           {isAuth ? (
-            <Route path={RouteNames.EVENT} element={<Event />} />
+            <Route path={RouteNames.EVENT} element={<Event/>} />
           ) : (
             <Route path={RouteNames.LOGIN} element={<Login />} />
           )}

@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import EventCalendar from "../components/EventCalendar";
 import { Button, Layout, Modal, Row } from "antd";
+import EventForm from "../components/EventForm";
 
-const Event = ()=> {
+const Event = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const showModal = () => setModalVisible(true);
@@ -11,16 +12,18 @@ const Event = ()=> {
   return (
     <Layout>
       <EventCalendar events={[]} />
-      <Row>
-        <Button onClick={showModal}>Add event</Button>
+      <Row justify={"center"}>
+          <Button onClick={showModal}>Add event</Button>
       </Row>
       <>
         <Modal
-          title={"Add new event"}
+          title={"Create new event"}
           visible={modalVisible}
           footer={null}
           onCancel={handleCancel}
-        />
+        >
+          <EventForm />
+        </Modal>
       </>
     </Layout>
   );

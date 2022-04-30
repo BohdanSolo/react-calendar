@@ -27,7 +27,7 @@ const LoginForm: FC = (): JSX.Element => {
 
   const submitLogin = () => {
     login({ username, password });
-    setTimeout(() =>  !error && navigate(RouteNames.EVENT), 1000)
+    setTimeout(() =>  !error ?  navigate(RouteNames.EVENT) : null, 1000)
   };
 
   return (
@@ -37,8 +37,9 @@ const LoginForm: FC = (): JSX.Element => {
           width: "400px",
           margin: "0 auto",
           padding: "20px 20px 0 20px",
-          backgroundColor: "#e8e8e8",
           borderRadius: "5px",
+            border: "1px solid lightgrey",
+            boxShadow: "5px 5px 5px 5px rgba(0, 0, 0, 0.1)"
         }}
         onFinish={submitLogin}
       >

@@ -1,4 +1,6 @@
 import { login, logout } from "./authActions";
+import { fetchGuests, createEvent, fetchEvents } from "./eventActions";
+import { setGuests, setEvents, setIsPending } from "../reducers/eventSlice";
 import {
   setIsAuth,
   setUsers,
@@ -13,4 +15,10 @@ export const allActionCreators = {
   setUsers,
   setError,
   setIsLoading,
+  setGuests,
+  setEvents,
+  setIsPending,
+  fetchGuests,
+  createEvent,
+  fetchEvents
 };

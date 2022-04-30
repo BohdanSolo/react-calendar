@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import { IUser } from "../../models/IUser";
 import {
   setError,
@@ -7,6 +6,7 @@ import {
   setIsLoading,
   setUsers,
 } from "../reducers/authSlice";
+import UserService from "../../api/UserService";
 
 export const login = createAsyncThunk(
   "auth/login",
@@ -15,15 +15,15 @@ export const login = createAsyncThunk(
       const { username, password } = userObj;
       dispatch(setIsLoading(true));
       setTimeout(async () => {
-        const res = await axios.get<IUser[]>("./users.json");
+        const res = await UserService.getUsers();
         const mockUser = res.data.filter(
           (user) => user.username === username && user.password === password
         )[0];
         if (mockUser) {
           localStorage.setItem("auth", "true");
           localStorage.setItem("username", mockUser.username);
-          dispatch(setIsAuth(true));
           dispatch(setUsers(mockUser));
+          dispatch(setIsAuth(true));
         } else {
           dispatch(setError("Incorrect password or username"));
         }

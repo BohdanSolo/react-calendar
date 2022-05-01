@@ -1,16 +1,28 @@
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import { Button, Form, Input, Layout } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { rules } from "../utils/rules";
 import { useAppSelector } from "../hooks/reduxHooks";
 import { RootState } from "../redux/store";
 import { useActions } from "../hooks/useActions";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../App";
 
 const stateAuth = (state: RootState) => state.auth;
 
-const LoginForm: FC = (): JSX.Element => {
+interface LoginFormProps {
+  btnPlaceholder: string;
+  userPlaceholder: string;
+  passwordPlaceholder: string;
+  isReg: boolean;
+}
+
+const LoginForm = ({
+  btnPlaceholder,
+  userPlaceholder,
+  passwordPlaceholder,
+  isReg,
+}: LoginFormProps): JSX.Element => {
   const { login } = useActions();
   const { isLoading, error } = useAppSelector(stateAuth);
   const navigate = useNavigate();
@@ -27,7 +39,7 @@ const LoginForm: FC = (): JSX.Element => {
 
   const submitLogin = () => {
     login({ username, password });
-    setTimeout(() =>  !error ?  navigate(RouteNames.EVENT) : null, 1000)
+    setTimeout(() => (!error ? navigate(RouteNames.EVENT) : null), 1000);
   };
 
   return (
@@ -38,8 +50,8 @@ const LoginForm: FC = (): JSX.Element => {
           margin: "0 auto",
           padding: "20px 20px 0 20px",
           borderRadius: "5px",
-            border: "1px solid lightgrey",
-            boxShadow: "5px 5px 5px 5px rgba(0, 0, 0, 0.1)"
+          border: "1px solid lightgrey",
+          boxShadow: "5px 5px 5px 5px rgba(0, 0, 0, 0.1)",
         }}
         onFinish={submitLogin}
       >
@@ -50,7 +62,7 @@ const LoginForm: FC = (): JSX.Element => {
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Username"
+            placeholder={userPlaceholder}
             value={username}
             onChange={handleUserName}
           />
@@ -62,7 +74,7 @@ const LoginForm: FC = (): JSX.Element => {
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
-            placeholder="Password"
+            placeholder={passwordPlaceholder}
             value={password}
             onChange={handlePassword}
           />
@@ -70,10 +82,13 @@ const LoginForm: FC = (): JSX.Element => {
         <Form.Item shouldUpdate style={{ textAlign: "center" }}>
           {() => (
             <Button type="primary" htmlType="submit" loading={isLoading}>
-              Log in
+              {btnPlaceholder}
             </Button>
           )}
         </Form.Item>
+        <Link className={"reg-link"} to={isReg ? "registration" : "/"}>
+          {isReg ? "Create a React Calendar account " : "Login"}
+        </Link>
       </Form>
     </Layout>
   );

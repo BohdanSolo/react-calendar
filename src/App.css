@@ -6,3 +6,28 @@
 .wrapper {
    display: flex;
 }
+
+.link {
+    color: white;
+    display: block;
+    padding: 0 20px;
+    transition: 0.2s linear;
+}
+
+
+.link:hover {
+    color: white;
+    background-color: #1890FF;
+}
+
+.reg-link {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+    font-size: 16px;
+    color: #c7c7c7;
+}
+
+.reg-link:hover {
+    color: #1890FF;
+}

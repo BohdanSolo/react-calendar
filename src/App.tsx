@@ -8,10 +8,12 @@ import { Layout } from "antd";
 import { useAppSelector } from "./hooks/reduxHooks";
 import { useActions } from "./hooks/useActions";
 import { IUser } from "./models/IUser";
+import Registration from "./pages/Registration";
 
 export enum RouteNames {
-  LOGIN = "/login",
-  EVENT = "/",
+  REGISTRATION = "/registration",
+  LOGIN = "/",
+  EVENT = "/event",
 }
 
 const App = (): JSX.Element => {
@@ -32,7 +34,11 @@ const App = (): JSX.Element => {
           {isAuth ? (
             <Route path={RouteNames.EVENT} element={<Event/>} />
           ) : (
-            <Route path={RouteNames.LOGIN} element={<Login />} />
+              <>
+                <Route path={RouteNames.REGISTRATION} element={<Registration />} />
+                <Route path={RouteNames.LOGIN} element={<Login />} />
+              </>
+
           )}
         </Routes>
       </Layout.Content>

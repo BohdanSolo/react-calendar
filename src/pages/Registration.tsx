@@ -10,7 +10,7 @@ const Registration = () => {
             btnPlaceholder={"Sign up"}
             userPlaceholder={"set username"}
             passwordPlaceholder={"create password"}
-            isReg={false}
+            isLog={false}
           />
       </Row>
     </Layout>

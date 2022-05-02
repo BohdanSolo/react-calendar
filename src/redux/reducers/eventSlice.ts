@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IUser } from "../../models/IUser";
+import {IGuest} from "../../models/IUser";
 import { IEvent } from "../../models/IEvent";
 
 interface initialStateTypes {
-  guests: IUser[];
+  guests: IGuest[];
   events: IEvent[];
   isLoading: boolean
 }
@@ -18,7 +18,7 @@ export const eventSlice = createSlice({
   name: "eventSlice",
   initialState,
   reducers: {
-    setGuests(state, action: PayloadAction<IUser[]>) {
+    setGuests(state, action: PayloadAction<IGuest[]>) {
       state.guests = action.payload;
     },
     setEvents(state, action: PayloadAction<IEvent[]>) {

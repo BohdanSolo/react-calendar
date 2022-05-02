@@ -8,7 +8,7 @@ export const fetchGuests = createAsyncThunk(
   async (_, { dispatch }) => {
     try {
       setTimeout(async () => {
-        const res = await UserService.getUsers();
+        const res = await UserService.getGuests();
         dispatch(setGuests(res.data));
       }, 1000);
     } catch (e) {

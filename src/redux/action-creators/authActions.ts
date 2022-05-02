@@ -12,6 +12,7 @@ export const login = createAsyncThunk(
   "auth/login",
   async (userObj: IUser, { dispatch }) => {
     try {
+      dispatch(setError(""));
       const { username, password } = userObj;
       dispatch(setIsLoading(true));
       setTimeout(async () => {
@@ -22,8 +23,9 @@ export const login = createAsyncThunk(
         if (mockUser) {
           localStorage.setItem("auth", "true");
           localStorage.setItem("username", mockUser.username);
-          dispatch(setUsers(mockUser));
           dispatch(setIsAuth(true));
+          dispatch(setUsers(mockUser));
+
         } else {
           dispatch(setError("Incorrect password or username"));
         }

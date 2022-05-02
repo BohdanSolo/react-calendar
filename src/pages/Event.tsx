@@ -6,6 +6,8 @@ import { useActions } from "../hooks/useActions";
 import { useAppSelector } from "../hooks/reduxHooks";
 import { RootState } from "../redux/store";
 import { IEvent } from "../models/IEvent";
+import { useNavigate } from "react-router-dom";
+import { RouteNames } from "../App";
 
 const eventState = (state: RootState) => state.events;
 const authState = (state: RootState) => state.auth;
@@ -14,10 +16,11 @@ const Event = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const showModal = () => setModalVisible(true);
   const handleCancel = () => setModalVisible(false);
+  const navigate = useNavigate();
 
   const { fetchGuests, createEvent, fetchEvents } = useActions();
   const { guests, events, isLoading } = useAppSelector(eventState);
-  const { user } = useAppSelector(authState);
+  const { user, error } = useAppSelector(authState);
 
   useEffect(() => {
     fetchGuests();
@@ -26,15 +29,18 @@ const Event = () => {
 
   const submit = (event: IEvent) => {
     createEvent(event);
-    setTimeout(() => setModalVisible(false),1000);
+    setTimeout(() => setModalVisible(false), 1000);
   };
 
+  if (error) {
+    navigate(RouteNames.EVENT);
+  }
   return (
     <Layout>
+        <Row justify={"center"}>
+            <Button onClick={showModal}>Add event</Button>
+        </Row>
       <EventCalendar events={events} />
-      <Row justify={"center"}>
-        <Button onClick={showModal}>Add event</Button>
-      </Row>
       <Modal
         title={"Create new event"}
         visible={modalVisible}

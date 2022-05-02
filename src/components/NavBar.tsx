@@ -12,9 +12,11 @@ const stateAuth = (state: RootState) => state.auth;
 const NavBar: FC = (): JSX.Element => {
   const { logout } = useActions();
   const { user } = useAppSelector(stateAuth);
+  const navigate = useNavigate()
 
   const handleLogOut = () => {
     logout();
+    navigate(RouteNames.LOGIN);
   };
 
   const { isAuth } = useAppSelector((state) => state.auth);

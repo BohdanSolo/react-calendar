@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Button, DatePicker, Form, Input, Row, Select } from "antd";
 import { rules } from "../utils/rules";
-import { IUser } from "../models/IUser";
+import {IGuest} from "../models/IUser";
 import { IEvent } from "../models/IEvent";
 import { Moment } from "moment";
 import {RootState} from "../redux/store";
 import {useAppSelector} from "../hooks/reduxHooks";
 
 interface EventFormProps {
-  guests: IUser[];
+  guests: IGuest[];
   submit: (event: IEvent) => void,
     isLoading: boolean
 }
@@ -67,8 +67,8 @@ const EventForm = ({ guests, submit, isLoading }: EventFormProps) => {
           placeholder={"Select guests"}
         >
           {guests.map((guest) => (
-            <Select.Option value={guest.username} key={guest.username}>
-              {guest.username}
+            <Select.Option value={guest.name} key={guest.name}>
+              {guest.name}
             </Select.Option>
           ))}
         </Select>

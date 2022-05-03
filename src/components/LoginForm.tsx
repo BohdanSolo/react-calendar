@@ -98,7 +98,7 @@ const LoginForm = ({
           >
             <Input
               prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="please, input  the guests who will be at the event!"
+              placeholder="please, input the guests who will be at the event"
               value={guests}
               onChange={handleGuests}
             />

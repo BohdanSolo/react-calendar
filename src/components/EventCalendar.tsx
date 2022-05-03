@@ -20,8 +20,6 @@ const EventCalendar = ({events}: EventCalendarProps): JSX.Element => {
             </div>
         );
     }
-
-
     return (
         <Calendar dateCellRender={dateCellRender}/>
     );

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { setEvents, setGuests, setIsPending } from "../reducers/eventSlice";
+
 import UserService from "../../api/UserService";
 import { IEvent } from "../../models/IEvent";
 

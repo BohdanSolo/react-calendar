@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+
 import { Button, Form, Input, Layout } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { rules } from "../utils/rules";
 import { useAppSelector } from "../hooks/reduxHooks";
-import { useActions } from "../hooks/useActions";
 import { Link, useNavigate } from "react-router-dom";
-import { RouteNames } from "../App";
 import axios from "axios";
-import {filteredStr} from "../services/filterStr";
+
+import { useActions } from "../hooks/useActions";
+import { filteredStr } from "../services/filterStr";
+import { rules } from "../utils/rules";
+import { RouteNames } from "../App";
+import {RootState} from "../redux/store";
+
 
 interface LoginFormProps {
   btnPlaceholder: string;
@@ -15,7 +19,7 @@ interface LoginFormProps {
   passwordPlaceholder: string;
   isLog: boolean;
 }
-
+const stateAuth = (state: RootState) => state.auth;
 const LoginForm = ({
   btnPlaceholder,
   userPlaceholder,
@@ -23,7 +27,7 @@ const LoginForm = ({
   isLog,
 }: LoginFormProps): JSX.Element => {
   const { login } = useActions();
-  const { isLoading, error } = useAppSelector((state) => state.auth);
+  const { isLoading, error } = useAppSelector(stateAuth);
   const navigate = useNavigate();
 
   const [username, setUsername] = useState<string>("");
@@ -47,7 +51,7 @@ const LoginForm = ({
 
   const submitRegistration = () => {
     axios.post("http://localhost:3001/users", { username, password });
-    let arrOfGuests = filteredStr(guests)
+    let arrOfGuests = filteredStr(guests);
     arrOfGuests.forEach((guest) =>
       axios.post("http://localhost:3001/guests", { name: guest })
     );

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import EventCalendar from "../components/EventCalendar";
+
+import { useNavigate } from "react-router-dom";
 import { Button, Layout, Modal, Row } from "antd";
+
+import EventCalendar from "../components/EventCalendar";
 import EventForm from "../components/EventForm";
 import { useActions } from "../hooks/useActions";
 import { useAppSelector } from "../hooks/reduxHooks";
 import { RootState } from "../redux/store";
 import { IEvent } from "../models/IEvent";
-import { useNavigate } from "react-router-dom";
 import { RouteNames } from "../App";
+
 
 const eventState = (state: RootState) => state.events;
 const authState = (state: RootState) => state.auth;

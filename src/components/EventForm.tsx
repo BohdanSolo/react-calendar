@@ -1,20 +1,22 @@
 import React, { useState } from "react";
+
 import { Button, DatePicker, Form, Input, Row, Select } from "antd";
+
 import { rules } from "../utils/rules";
-import {IGuest} from "../models/IUser";
+import { useAppSelector } from "../hooks/reduxHooks";
+import { IGuest } from "../models/IUser";
 import { IEvent } from "../models/IEvent";
 import { Moment } from "moment";
-import {RootState} from "../redux/store";
-import {useAppSelector} from "../hooks/reduxHooks";
+import { RootState } from "../redux/store";
+
 
 interface EventFormProps {
   guests: IGuest[];
-  submit: (event: IEvent) => void,
-    isLoading: boolean
+  submit: (event: IEvent) => void;
+  isLoading: boolean;
 }
 
 const stateAuth = (state: RootState) => state.auth;
-
 const EventForm = ({ guests, submit, isLoading }: EventFormProps) => {
   const [event, setEvent] = useState<IEvent>({
     guest: "",
@@ -22,7 +24,7 @@ const EventForm = ({ guests, submit, isLoading }: EventFormProps) => {
     date: "",
     description: "",
   });
-    const {user} = useAppSelector(stateAuth)
+  const { user } = useAppSelector(stateAuth);
 
   //Event set functions
   const setGuest = (guest: string): void => {
@@ -39,7 +41,7 @@ const EventForm = ({ guests, submit, isLoading }: EventFormProps) => {
   };
 
   const submitForm = () => {
-      submit({...event, author: user.username})
+    submit({ ...event, author: user.username });
   };
 
   return (
@@ -56,7 +58,10 @@ const EventForm = ({ guests, submit, isLoading }: EventFormProps) => {
       </Form.Item>
       <Form.Item
         name="Select a date"
-        rules={[rules.required("Date of the event is required"), rules.isDateAfter("You can't create the event in the past")]}
+        rules={[
+          rules.required("Date of the event is required"),
+          rules.isDateAfter("You can't create the event in the past"),
+        ]}
       >
         <DatePicker style={{ width: 250 }} onChange={setDate} />
       </Form.Item>

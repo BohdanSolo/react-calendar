@@ -1,5 +1,6 @@
 {
   "name": "calendar-react",
+  "homepage": "https://bohdansolo.github.io/react-calendar/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

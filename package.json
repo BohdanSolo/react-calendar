@@ -30,11 +30,13 @@
   },
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm start\"",
+    "deploy" : "npm run build && npm run build-gh-pages",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server -w src/server/users.json -p 3001"
+    "server": "json-server -w src/server/users.json -p 3001",
+    "build-gh-pages": "gh-pages -d build"
   },
   "compilerOptions": {
     "types": [
@@ -61,6 +63,7 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^7.1.0"
+    "concurrently": "^7.1.0",
+    "gh-pages": "^3.2.3"
   }
 }

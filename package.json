@@ -34,7 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server -w src/server/users.json -p 3001",
+    "server": "json-server -w users.json -p 3001",
     "build-gh-pages": "gh-pages -d build"
   },
   "compilerOptions": {

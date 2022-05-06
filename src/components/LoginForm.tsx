@@ -11,6 +11,7 @@ import { filteredStr } from "../services/filterStr";
 import { rules } from "../utils/rules";
 import { RouteNames } from "../App";
 import {RootState} from "../redux/store";
+import {BASE_URL} from "../api/UserService";
 
 
 interface LoginFormProps {
@@ -50,10 +51,10 @@ const LoginForm = ({
   };
 
   const submitRegistration = () => {
-    axios.post("http://localhost:3001/users", { username, password });
+    axios.post(`${BASE_URL}/users`, { username, password });
     let arrOfGuests = filteredStr(guests);
     arrOfGuests.forEach((guest) =>
-      axios.post("http://localhost:3001/guests", { name: guest })
+      axios.post(`${BASE_URL}/guests`, { name: guest })
     );
     navigate(RouteNames.LOGIN);
   };

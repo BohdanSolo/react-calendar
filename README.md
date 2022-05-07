@@ -1,12 +1,12 @@
 # Calendar React Application
 
-##Links
+## Links
 
-- [Link to the project on Herkou](https://calendar-react-solo.herokuapp.com/);
+- [Link to the project on Herkou](https://bohdansolo.github.io/js-todo-list/);
 
 - [Link to repository](https://github.com/BohdanSolo/react-calendar);
 
-##Scripts
+## Scripts
 
 ```bash
 npm start                # run app in the development mode
@@ -14,11 +14,11 @@ npm run build            # builds the app for production
 npm run dev              # npm run json-server + npm start
 ```
 
-##API
+## API
 - [Main API - custom json-server](http://localhost:3001);
 
 
-##Stack
+## Stack
 - JavaScript;
 - React 18.0;
 - TypeScript;
@@ -28,7 +28,7 @@ npm run dev              # npm run json-server + npm start
 - Antd;
 - Other packages: axios, concurrently, moments;
 
-##Application features:
+## Application features:
 - Registration logic;
 - Login logic;
 - Verification of login and password;

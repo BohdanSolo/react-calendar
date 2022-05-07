@@ -2,7 +2,7 @@
 
 ## Links
 
-- [Link to the project on Herkou](https://bohdansolo.github.io/js-todo-list/);
+- [Link to the project on Heroku](https://bohdansolo.github.io/js-todo-list/);
 
 - [Link to repository](https://github.com/BohdanSolo/react-calendar);
 

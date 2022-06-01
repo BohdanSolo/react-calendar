@@ -51,6 +51,7 @@ const LoginForm = ({
   };
 
   const submitRegistration = () => {
+
     axios.post(`${BASE_URL}/users`, { username, password });
     let arrOfGuests = filteredStr(guests);
     arrOfGuests.forEach((guest) =>
@@ -58,6 +59,7 @@ const LoginForm = ({
     );
     navigate(RouteNames.LOGIN);
   };
+
 
   return (
     <Layout>

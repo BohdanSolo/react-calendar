@@ -7,7 +7,7 @@ import {Moment} from "moment";
 interface EventCalendarProps {
     events: IEvent[]
 }
-
+1
 const EventCalendar = ({events}: EventCalendarProps): JSX.Element => {
     function dateCellRender(value: Moment) {
         const formatedDate = value.format().slice(0, 10);

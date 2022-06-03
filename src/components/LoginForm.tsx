@@ -20,6 +20,8 @@ interface LoginFormProps {
   passwordPlaceholder: string;
   isLog: boolean;
 }
+/*
+* */
 const stateAuth = (state: RootState) => state.auth;
 const LoginForm = ({
   btnPlaceholder,

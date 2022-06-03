@@ -19,7 +19,7 @@ npm run dev              # npm run json-server + npm start
 
 
 ## Stack
-- JavaScript;
+- JavaScript; 
 - React 18.0;
 - TypeScript;
 - Redux (Redux Toolkit);
